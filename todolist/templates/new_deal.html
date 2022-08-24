@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Добавить дело{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+
+      <label for="exampleFormControlInput2" class="form-label">Дело:</label>
+      {{ form.deal }}
+
+    </div>
+    <a href="{% url 'home' %}">
+          <input type="submit" value="Добавить дело" class="btn btn-outline-primary">
+      </a>
+    <a href="{% url 'home' %}">
+          <input type="button" value="Назад" class="btn btn-outline-primary">
+      </a>
+  </form>
+  <span>{{ error }}</span>
+    <br>
+</div>
+
+{% endblock %}

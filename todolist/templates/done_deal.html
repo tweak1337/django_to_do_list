@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Готовые дела{% endblock %}
+{% block content %}
+<br>
+<ul class="list-group">
+{% for deal in deals %}
+    {% if deal.is_done != False %}
+    <div class="container">
+        <form method="post">
+        {% csrf_token %}
+            <div class="row">
+        <ul class="list-group col-6">
+            <li class="list-group-item list-group-item-info">Дело: {{ deal.deal }}</li>
+        </ul>
+            <div class="list-group-item col-6 list-group-item-dark">Сделано: {{ deal.done_date }}</div>
+                <div class="container">
+                    <div class="row">
+                        <div class="list-group-item col-0.5 list-group-item-success">За:</div>
+                        <div class="list-group-item col-2 list-group-item-warning">{{ deal.days }} дней</div>
+                        <div class="list-group-item col-2 list-group-item-warning">{{ deal.hours }} часов</div>
+                        <div class="list-group-item col-2 list-group-item-warning">{{ deal.minutes }} минут</div>
+                        <div class="list-group-item col-2 list-group-item-warning">{{ deal.seconds }} секунд</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br>
+    </div>
+</ul>
+
+
+{% endif %}
+{% endfor %}
+
+<div class="container">
+<form>
+    <a href="{% url 'home' %}">
+        <input type="button" value="Назад" class="btn btn-outline-primary">
+    </a>
+</form>
+</div>
+{% endblock %}
